@@ -5,17 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vector.io Hackathon – NMIET Talegaon</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- Razorpay Checkout (client-side only) -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- EmailJS (sends registration email to organizer after payment) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <style>
   :root{
     --neon-blue:#00d4ff;--neon-purple:#7b2fff;--neon-pink:#ff2d78;
     --gold:#ffd700;--dark:#050510;--card-bg:rgba(7,7,30,0.85);
-    --text:#e8e8ff;--text-dim:#8888bb;
+    --text:#e8e8ff;--text-dim:#8888bb;--green:#00ff9d;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -45,18 +39,18 @@
 
   /* ── HERO ── */
   .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:40px 20px 60px;}
-  .hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(123,47,255,.25) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:pulse 4s ease-in-out infinite;}
-  .hero-glow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.15) 0%,transparent 70%);top:30%;left:20%;pointer-events:none;animation:pulse 6s ease-in-out infinite reverse;}
-  @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.1);opacity:.7;}}
+  .hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(123,47,255,.25) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:bgpulse 4s ease-in-out infinite;}
+  .hero-glow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.15) 0%,transparent 70%);top:30%;left:20%;pointer-events:none;animation:bgpulse 6s ease-in-out infinite reverse;}
+  @keyframes bgpulse{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.1);opacity:.7;}}
   .institute-badge{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.3);border-radius:4px;padding:8px 20px;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--neon-blue);text-transform:uppercase;margin-bottom:30px;position:relative;z-index:1;animation:fadeDown .8s ease both;}
   .hero-eyebrow{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.3em;color:var(--neon-pink);text-transform:uppercase;margin-bottom:14px;position:relative;z-index:1;animation:fadeDown 1s ease .2s both;}
   .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,16vw,13rem);line-height:.9;letter-spacing:.02em;background:linear-gradient(135deg,#fff 30%,var(--neon-blue) 60%,var(--neon-purple) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;animation:fadeDown 1s ease .4s both;filter:drop-shadow(0 0 40px rgba(0,212,255,.3));}
   .hero-sub{font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.2em;color:var(--text-dim);margin-top:16px;position:relative;z-index:1;animation:fadeDown 1s ease .6s both;}
   .hero-tagline{margin-top:28px;font-size:1.3rem;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;position:relative;z-index:1;animation:fadeDown 1s ease .8s both;}
   .prize-splash{margin-top:36px;position:relative;z-index:1;animation:fadeDown 1s ease 1s both;}
-  .prize-amount{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,7rem);line-height:1;background:linear-gradient(135deg,var(--gold),#ff9900,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(255,215,0,.5));animation:goldPulse 2s ease-in-out infinite;}
+  .prize-amount{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,7rem);line-height:1;background:linear-gradient(135deg,var(--gold),#ff9900,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldPulse 2s ease-in-out infinite;}
   .prize-label{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.25em;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:4px;}
-  @keyframes goldPulse{0%,100%{filter:drop-shadow(0 0 20px rgba(255,215,0,.5));}50%{filter:drop-shadow(0 0 40px rgba(255,215,0,.8));}}
+  @keyframes goldPulse{0%,100%{filter:drop-shadow(0 0 20px rgba(255,215,0,.5));}50%{filter:drop-shadow(0 0 40px rgba(255,215,0,.9));}}
   .hero-cta{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;animation:fadeDown 1s ease 1.2s both;}
   @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 
@@ -80,7 +74,7 @@
   .round-desc{color:var(--text-dim);font-size:.95rem;line-height:1.7;}
   .round-duration{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--neon-blue);border-top:1px solid rgba(0,212,255,.15);padding-top:16px;width:100%;}
 
-  /* ── WHY ── */
+  /* ── FEATURES ── */
   .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
   .feature-item{background:var(--card-bg);border:1px solid rgba(123,47,255,.2);padding:28px 24px;transition:border-color .3s,transform .3s;}
   .feature-item:hover{border-color:rgba(123,47,255,.6);transform:translateY(-4px);}
@@ -125,83 +119,115 @@
 
   /* ── PARTICLES ── */
   .particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-  .particle{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--neon-blue);animation:float linear infinite;opacity:.4;}
-  @keyframes float{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.4;}90%{opacity:.4;}100%{transform:translateY(-10vh) translateX(var(--drift));opacity:0;}}
+  .particle{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--neon-blue);animation:floatUp linear infinite;opacity:.4;}
+  @keyframes floatUp{0%{transform:translateY(100vh) translateX(0);opacity:0;}10%{opacity:.4;}90%{opacity:.4;}100%{transform:translateY(-10vh) translateX(var(--drift));opacity:0;}}
 
-  /* ─────────────────────────────────────────────────────────────
-     MODAL
-  ───────────────────────────────────────────────────────────── */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(2,2,8,.93);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:16px;}
+  /* ═══════════════════════════════════════════════════════════
+     MODAL  ─  3-step flow
+     STEP 1: Form details
+     STEP 2: QR + receipt upload
+     STEP 3: Success (mailto fires)
+  ═══════════════════════════════════════════════════════════ */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(2,2,8,.94);z-index:500;align-items:flex-start;justify-content:center;backdrop-filter:blur(10px);padding:16px;overflow-y:auto;}
   .modal-overlay.open{display:flex;}
-  .modal-box{background:linear-gradient(145deg,#07071e,#0c0c2e);border:1px solid rgba(0,212,255,.3);width:100%;max-width:560px;position:relative;max-height:90vh;overflow-y:auto;animation:fadeDown .35s ease;}
+  .modal-box{background:linear-gradient(145deg,#07071e,#0c0c2e);border:1px solid rgba(0,212,255,.28);width:100%;max-width:580px;position:relative;animation:fadeDown .35s ease;margin:auto;}
   .modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple),var(--neon-pink));}
   .modal-inner{padding:44px 36px 36px;}
-
   .modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--text-dim);font-size:1.6rem;cursor:pointer;line-height:1;z-index:10;transition:color .2s;}
   .modal-close:hover{color:var(--neon-pink);}
+
+  /* Step indicator */
+  .step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px;}
+  .step-dot{width:32px;height:32px;border-radius:50%;border:2px solid rgba(0,212,255,.25);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-dim);transition:all .3s;flex-shrink:0;}
+  .step-dot.active{border-color:var(--neon-blue);color:var(--neon-blue);box-shadow:0 0 12px rgba(0,212,255,.4);}
+  .step-dot.done{border-color:var(--green);background:rgba(0,255,157,.1);color:var(--green);}
+  .step-line{flex:1;height:1px;background:rgba(0,212,255,.15);max-width:60px;}
+  .step-line.done{background:var(--green);}
 
   /* Steps */
   .modal-step{display:none;}
   .modal-step.active{display:block;}
 
-  /* Step header */
-  .modal-title{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.08em;line-height:1;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
-  .modal-sub{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;margin-bottom:22px;}
-
-  /* Payment pill */
-  .pay-pill{display:flex;align-items:center;justify-content:space-between;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.25);padding:14px 18px;margin-bottom:24px;}
-  .pay-pill-left{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:.07em;line-height:1.8;}
-  .pay-pill-left strong{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);display:block;letter-spacing:.05em;line-height:1.1;}
-  .pay-pill-right{text-align:right;font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text-dim);letter-spacing:.06em;}
-  .rzp-badge{display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:flex-end;}
-  .rzp-badge svg{flex-shrink:0;}
+  .modal-title{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;letter-spacing:.08em;line-height:1;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+  .modal-sub{font-family:'Space Mono',monospace;font-size:.67rem;letter-spacing:.13em;color:var(--text-dim);text-transform:uppercase;margin-bottom:22px;}
 
   /* Form */
-  .form-group{margin-bottom:15px;}
-  .form-group label{display:block;font-family:'Space Mono',monospace;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--neon-blue);margin-bottom:6px;}
+  .form-group{margin-bottom:14px;}
+  .form-group label{display:block;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--neon-blue);margin-bottom:5px;}
   .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.18);color:var(--text);padding:11px 14px;font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;transition:border-color .2s;appearance:none;}
-  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-dim);opacity:.55;}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-dim);opacity:.5;}
   .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--neon-blue);}
   .form-group select option{background:#07071e;}
-  .form-group textarea{resize:vertical;min-height:72px;}
+  .form-group textarea{resize:vertical;min-height:68px;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
-  /* Submit button */
-  .pay-btn{width:100%;margin-top:8px;padding:17px;background:linear-gradient(135deg,var(--gold) 0%,#ffb300 100%);color:#000;border:none;font-family:'Space Mono',monospace;font-size:.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:filter .2s,transform .2s;}
-  .pay-btn:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px);}
-  .pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+  /* ── STEP 2 : QR section ── */
+  .qr-section{display:flex;gap:24px;align-items:flex-start;margin-bottom:24px;}
+  .qr-box{flex-shrink:0;width:170px;height:170px;border:2px solid rgba(0,212,255,.35);background:rgba(0,212,255,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .qr-box img{width:100%;height:100%;object-fit:contain;display:block;}
+  .qr-box .qr-placeholder{text-align:center;padding:12px;}
+  .qr-box .qr-placeholder span{font-size:2.8rem;display:block;margin-bottom:6px;}
+  .qr-box .qr-placeholder p{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text-dim);letter-spacing:.08em;line-height:1.5;}
+  .qr-box::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(0,212,255,.05) 100%);pointer-events:none;}
+  /* animated corner brackets on QR */
+  .qr-corner{position:absolute;width:16px;height:16px;border-color:var(--neon-blue);border-style:solid;}
+  .qr-corner.tl{top:4px;left:4px;border-width:2px 0 0 2px;}
+  .qr-corner.tr{top:4px;right:4px;border-width:2px 2px 0 0;}
+  .qr-corner.bl{bottom:4px;left:4px;border-width:0 0 2px 2px;}
+  .qr-corner.br{bottom:4px;right:4px;border-width:0 2px 2px 0;}
+
+  .qr-info{flex:1;}
+  .qr-info-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em;color:#fff;margin-bottom:6px;}
+  .qr-amount{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--gold);margin-bottom:4px;filter:drop-shadow(0 0 8px rgba(255,215,0,.5));}
+  .qr-upi{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--neon-blue);letter-spacing:.06em;margin-bottom:12px;word-break:break-all;}
+  .qr-steps{list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .qr-steps li{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);letter-spacing:.05em;display:flex;gap:8px;align-items:flex-start;line-height:1.5;}
+  .qr-steps li::before{content:'→';color:var(--neon-blue);flex-shrink:0;}
+
+  /* Receipt upload */
+  .receipt-section{background:rgba(0,255,157,.04);border:1px dashed rgba(0,255,157,.3);padding:20px;margin-bottom:20px;}
+  .receipt-section-title{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .receipt-section-title::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;animation:blink 1.5s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  /* File drop zone */
+  .file-drop{border:1px dashed rgba(0,212,255,.25);padding:18px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative;margin-bottom:12px;}
+  .file-drop:hover,.file-drop.dragover{border-color:var(--neon-blue);background:rgba(0,212,255,.06);}
+  .file-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .file-drop-icon{font-size:1.8rem;margin-bottom:6px;}
+  .file-drop-text{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text-dim);letter-spacing:.08em;line-height:1.6;}
+  .file-drop-text strong{color:var(--neon-blue);}
+  .file-preview{display:none;margin-top:10px;position:relative;}
+  .file-preview img{max-width:100%;max-height:140px;object-fit:contain;border:1px solid rgba(0,212,255,.2);}
+  .file-preview .file-name{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--green);margin-top:6px;word-break:break-all;}
+  .file-remove{background:none;border:none;color:var(--neon-pink);font-size:.7rem;font-family:'Space Mono',monospace;cursor:pointer;margin-top:4px;letter-spacing:.06em;}
+
+  /* UTR / Txn ID input */
+  .txn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+  /* Buttons */
+  .btn-next{width:100%;padding:16px;background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));color:#fff;border:none;font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:filter .2s,transform .2s;margin-top:8px;}
+  .btn-next:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-2px);}
+  .btn-next:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+  .btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),#00cc7a);color:#000;border:none;font-family:'Space Mono',monospace;font-size:.88rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:filter .2s,transform .2s;margin-top:8px;}
+  .btn-submit:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px);}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+  .btn-back{background:none;border:none;color:var(--text-dim);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;cursor:pointer;display:flex;align-items:center;gap:6px;margin-bottom:20px;transition:color .2s;}
+  .btn-back:hover{color:var(--neon-blue);}
 
   /* Error */
-  .modal-error{display:none;background:rgba(255,45,120,.08);border:1px solid rgba(255,45,120,.3);color:var(--neon-pink);font-family:'Space Mono',monospace;font-size:.67rem;padding:11px 14px;margin-top:10px;letter-spacing:.04em;line-height:1.6;}
+  .modal-error{display:none;background:rgba(255,45,120,.08);border:1px solid rgba(255,45,120,.3);color:var(--neon-pink);font-family:'Space Mono',monospace;font-size:.66rem;padding:10px 14px;margin-top:10px;letter-spacing:.04em;line-height:1.6;}
+  .modal-note{font-family:'Space Mono',monospace;font-size:.59rem;color:var(--text-dim);text-align:center;margin-top:12px;letter-spacing:.07em;line-height:1.7;}
 
-  .modal-note{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text-dim);text-align:center;margin-top:12px;letter-spacing:.07em;line-height:1.7;}
-
-  /* ── Step: Processing ── */
-  .step-center{text-align:center;padding:48px 20px;}
-  .spinner{width:50px;height:50px;border:3px solid rgba(0,212,255,.15);border-top-color:var(--neon-blue);border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 20px;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .step-center h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--neon-blue);letter-spacing:.08em;margin-bottom:8px;}
-  .step-center p{color:var(--text-dim);font-size:.9rem;}
-
-  /* ── Step: Success ── */
-  .success-wrap{text-align:center;padding:36px 10px 16px;}
+  /* ── STEP 3: Success ── */
+  .success-wrap{text-align:center;padding:40px 10px 20px;}
   .success-wrap .check{font-size:4rem;display:block;margin-bottom:14px;animation:popIn .5s cubic-bezier(.36,2,.6,.8) both;}
   @keyframes popIn{from{transform:scale(0);}to{transform:scale(1);}}
-  .success-wrap h3{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--neon-blue);letter-spacing:.08em;margin-bottom:10px;}
+  .success-wrap h3{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--green);letter-spacing:.08em;margin-bottom:10px;}
   .success-wrap p{color:var(--text-dim);font-size:.92rem;line-height:1.8;}
-  .pid-box{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);padding:12px 16px;margin:16px 0;font-family:'Space Mono',monospace;font-size:.67rem;color:var(--neon-blue);word-break:break-all;text-align:left;line-height:1.8;}
-
-  /* ── Config panel (organizer only) ── */
-  .config-toggle{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:var(--text-dim);background:none;border:none;cursor:pointer;display:block;margin:14px auto 0;opacity:.5;transition:opacity .2s;}
-  .config-toggle:hover{opacity:1;}
-  .config-panel{display:none;margin-top:16px;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.15);padding:18px;}
-  .config-panel.open{display:block;}
-  .config-panel-title{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--gold);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase;}
-  .cfg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-  .cfg-row .form-group{margin-bottom:0;}
-  .cfg-save{width:100%;padding:10px;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;cursor:pointer;transition:background .2s;}
-  .cfg-save:hover{background:rgba(255,215,0,.2);}
-  .cfg-note{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--text-dim);line-height:1.7;margin-top:10px;}
+  .success-detail{background:rgba(0,255,157,.05);border:1px solid rgba(0,255,157,.2);padding:14px 18px;margin:18px 0;text-align:left;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text);line-height:2;}
+  .success-detail strong{color:var(--green);}
+  .mail-note{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);padding:12px 16px;font-family:'Space Mono',monospace;font-size:.62rem;color:var(--neon-blue);letter-spacing:.06em;line-height:1.7;margin-top:12px;}
 
   /* ── Scroll reveal ── */
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
@@ -222,17 +248,48 @@
     section{padding:50px 16px;}
     .section-title{font-size:clamp(1.8rem,5vw,3rem);}
     .timeline,.features,.prizes-grid,.contact-grid{grid-template-columns:1fr;}
-    .form-row,.cfg-row{grid-template-columns:1fr;}
+    .form-row,.txn-row{grid-template-columns:1fr;}
+    .qr-section{flex-direction:column;align-items:center;}
+    .qr-box{width:200px;height:200px;}
     .modal-inner{padding:36px 18px 28px;}
     footer{font-size:.65rem;}
   }
+
+  /* ── STEP 3 BACKUP DELIVERY METHODS ── */
+  .success-wrap .check{font-size:3.6rem;display:block;margin-bottom:10px;animation:popIn .5s cubic-bezier(.36,2,.6,.8) both;}
+  .success-sub{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:18px;}
+  .safety-banner{background:rgba(0,255,157,.06);border:1px solid rgba(0,255,157,.25);padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;text-align:left;}
+  .safety-icon{font-size:1.4rem;flex-shrink:0;}
+  .safety-text{font-family:'Space Mono',monospace;font-size:.61rem;color:var(--green);letter-spacing:.05em;line-height:1.6;}
+  .safety-text strong{color:#fff;}
+  .backup-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;text-align:left;}
+  .backup-cards{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;}
+  .backup-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:12px 14px;display:flex;align-items:center;gap:12px;transition:border-color .2s;}
+  .backup-card.primary{border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.05);}
+  .backup-card-icon{font-size:1.4rem;flex-shrink:0;width:32px;text-align:center;}
+  .backup-card-info{flex:1;text-align:left;}
+  .backup-card-title{font-weight:700;font-size:.95rem;color:#fff;letter-spacing:.03em;}
+  .backup-card-sub{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--text-dim);letter-spacing:.05em;margin-top:2px;}
+  .backup-badge{font-family:'Space Mono',monospace;font-size:.52rem;padding:3px 7px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;}
+  .badge-blue{background:rgba(0,212,255,.15);color:var(--neon-blue);border:1px solid rgba(0,212,255,.3);}
+  .badge-green{background:rgba(0,255,157,.12);color:var(--green);border:1px solid rgba(0,255,157,.25);}
+  .badge-gold{background:rgba(255,215,0,.12);color:var(--gold);border:1px solid rgba(255,215,0,.25);}
+  .backup-btn{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.09em;padding:8px 14px;border:none;cursor:pointer;text-transform:uppercase;transition:filter .2s,transform .2s;white-space:nowrap;}
+  .backup-btn:hover{filter:brightness(1.12);transform:translateY(-1px);}
+  .backup-btn.blue{background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));color:#fff;}
+  .backup-btn.wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;}
+  .backup-btn.copy{background:rgba(123,47,255,.2);border:1px solid rgba(123,47,255,.4);color:#c090ff;}
+  .backup-btn.dl{background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);}
+  .backup-btn.copied{background:rgba(0,255,157,.15);border:1px solid rgba(0,255,157,.3);color:var(--green);}
+  .ls-notice{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text-dim);text-align:center;line-height:1.7;padding:10px;border-top:1px solid rgba(255,255,255,.06);margin-top:4px;}
+  .ls-notice button{background:none;border:none;color:var(--neon-blue);cursor:pointer;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.05em;text-decoration:underline;}
+
 </style>
 </head>
 <body>
 
 <div class="particles" id="particles"></div>
 
-<!-- ── NAV ───────────────────────────────────────────────────────────────── -->
 <nav>
   <a href="#" class="nav-logo">vector.io</a>
   <button class="nav-toggle" id="navToggle">☰</button>
@@ -241,16 +298,10 @@
     <li><a href="#prizes">Prizes</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li>
-      <button onclick="openModal()" class="btn-primary"
-        style="padding:10px 22px;clip-path:none;border:none;cursor:pointer;">
-        Register · ₹249
-      </button>
-    </li>
+    <li><button onclick="openModal()" class="btn-primary" style="padding:10px 22px;clip-path:none;border:none;cursor:pointer;">Register · ₹249</button></li>
   </ul>
 </nav>
 
-<!-- ── COLLEGE HEADER ─────────────────────────────────────────────────────── -->
 <div class="college-header">
   <img src="image.png" alt="NMIET College Banner">
 </div>
@@ -260,7 +311,7 @@
   <div class="org-dot"></div>
 </div>
 
-<!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+<!-- HERO -->
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
@@ -281,19 +332,16 @@
 
 <div class="divider"></div>
 
-<!-- ── ROUNDS ─────────────────────────────────────────────────────────────── -->
+<!-- ROUNDS -->
 <section id="rounds">
-  <div class="reveal">
-    <p class="section-label">Event Structure</p>
-    <h2 class="section-title">The Rounds</h2>
-  </div>
+  <div class="reveal"><p class="section-label">Event Structure</p><h2 class="section-title">The Rounds</h2></div>
   <div class="timeline reveal">
     <div class="round-card" style="border-color:rgba(255,215,0,.3);">
       <div class="round-number" style="color:rgba(255,215,0,.18);">00</div>
       <div class="round-badge" style="background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.4);color:var(--gold);">Registration Open</div>
       <div class="round-title">Register Your Team</div>
       <div class="round-date">📅 March 20 – March 30, 2026</div>
-      <p class="round-desc">Register your team before the deadline. Fill in your team details, project idea, and get your slot confirmed. Seats are limited!</p>
+      <p class="round-desc">Register your team before the deadline. Fill in your team details, project idea, and confirm your slot. Seats are limited!</p>
       <div class="round-duration" style="color:var(--gold);border-color:rgba(255,215,0,.2);"><span>📋</span> Open Registration Window · 10 Days</div>
     </div>
     <div class="round-card">
@@ -301,7 +349,7 @@
       <div class="round-badge">Online</div>
       <div class="round-title">Project Prototype Submission</div>
       <div class="round-date">📅 March 30 – April 8, 2026</div>
-      <p class="round-desc">Submit your project prototype via a GitHub link. Showcase your initial idea with working code. No slides, no fluff — just your repository.</p>
+      <p class="round-desc">Submit your project prototype via a GitHub link. Working code only — no slides, no fluff.</p>
       <div class="round-duration"><span>⏱</span> GitHub Link Submission</div>
     </div>
     <div class="round-card">
@@ -309,7 +357,7 @@
       <div class="round-badge">Online</div>
       <div class="round-title">Round 01 Result</div>
       <div class="round-date">📅 April 10, 2026</div>
-      <p class="round-desc">Shortlisted teams will be announced. Check the results and prepare for the next phase.</p>
+      <p class="round-desc">Shortlisted teams announced. Check results and prepare for the next phase.</p>
       <div class="round-duration"><span>⏱</span> Announcement</div>
     </div>
     <div class="round-card">
@@ -333,7 +381,7 @@
       <div class="round-badge offline">Offline · Finals</div>
       <div class="round-title">Grand Finale – On Campus</div>
       <div class="round-date">📅 April 25, 2026</div>
-      <p class="round-desc">The ultimate battle. Top teams meet at NMIET Auditorium for a non-stop 24-hour coding marathon. Only execution counts.</p>
+      <p class="round-desc">Top teams meet at NMIET Auditorium for a non-stop 24-hour coding marathon. Only execution counts.</p>
       <div class="round-duration"><span>⏱</span> 24-Hour Hackathon</div>
     </div>
   </div>
@@ -341,12 +389,9 @@
 
 <div class="divider"></div>
 
-<!-- ── WHY ────────────────────────────────────────────────────────────────── -->
+<!-- WHY -->
 <section id="why">
-  <div class="reveal">
-    <p class="section-label">Why Participate</p>
-    <h2 class="section-title">What You Get</h2>
-  </div>
+  <div class="reveal"><p class="section-label">Why Participate</p><h2 class="section-title">What You Get</h2></div>
   <div class="features reveal">
     <div class="feature-item"><span class="feature-icon">💰</span><div class="feature-title">₹50,000+ Prizes</div><p class="feature-desc">Massive prize pool distributed across winners and special categories.</p></div>
     <div class="feature-item"><span class="feature-icon">⚡</span><div class="feature-title">Pure Execution</div><p class="feature-desc">No PPT, no presentations. Only working code and real solutions matter.</p></div>
@@ -359,12 +404,9 @@
 
 <div class="divider"></div>
 
-<!-- ── PRIZES ─────────────────────────────────────────────────────────────── -->
+<!-- PRIZES -->
 <section id="prizes">
-  <div class="reveal">
-    <p class="section-label">Reward</p>
-    <h2 class="section-title">Prize Pool</h2>
-  </div>
+  <div class="reveal"><p class="section-label">Reward</p><h2 class="section-title">Prize Pool</h2></div>
   <div class="prizes-grid reveal">
     <div class="prize-card first"><div class="prize-medal">🥇</div><div class="prize-rank">1st Place</div><div class="prize-value">Cash Prize</div><p style="color:var(--text-dim);font-size:.85rem;margin-top:12px;">Top honours + certificates + recognition</p></div>
     <div class="prize-card second"><div class="prize-medal">🥈</div><div class="prize-rank">2nd Place</div><div class="prize-value">Cash Prize</div><p style="color:var(--text-dim);font-size:.85rem;margin-top:12px;">Runner-up rewards + certificates</p></div>
@@ -376,12 +418,9 @@
 
 <div class="divider"></div>
 
-<!-- ── VENUE ──────────────────────────────────────────────────────────────── -->
+<!-- VENUE -->
 <section id="venue">
-  <div class="reveal">
-    <p class="section-label">Location</p>
-    <h2 class="section-title">Venue</h2>
-  </div>
+  <div class="reveal"><p class="section-label">Location</p><h2 class="section-title">Venue</h2></div>
   <div class="venue-block reveal">
     <div style="font-size:3rem;">📍</div>
     <div>
@@ -394,12 +433,9 @@
 
 <div class="divider"></div>
 
-<!-- ── CONTACT ────────────────────────────────────────────────────────────── -->
+<!-- CONTACT -->
 <section id="contact">
-  <div class="reveal">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">Contact</h2>
-  </div>
+  <div class="reveal"><p class="section-label">Get In Touch</p><h2 class="section-title">Contact</h2></div>
   <div class="contact-grid reveal">
     <div class="contact-card"><div class="contact-avatar">👤</div><div><div class="contact-name">Sandesh Shingankar</div><div class="contact-phone">📞 8668916936</div></div></div>
     <div class="contact-card"><div class="contact-avatar">👤</div><div><div class="contact-name">Tejas Naiknaware</div><div class="contact-phone">📞 80079 53204</div></div></div>
@@ -411,48 +447,41 @@
   <p style="margin-top:8px;">Information Technology Department · Approved by AICTE · Accredited by NAAC · Affiliated to SPPU</p>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════════════
      REGISTRATION MODAL
-═══════════════════════════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════════════════════════════════ -->
 <div class="modal-overlay" id="regModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">×</button>
 
-    <!-- ── STEP 1: FORM ── -->
-    <div class="modal-step active" id="stepForm">
+    <!-- ── STEP 1 : Team Details ── -->
+    <div class="modal-step active" id="step1">
       <div class="modal-inner">
-        <div class="modal-title">Register Now</div>
-        <div class="modal-sub">vector.io Hackathon 2026 · NMIET Talegaon</div>
-
-        <div class="pay-pill">
-          <div class="pay-pill-left">
-            Registration Fee
-            <strong>₹ 249</strong>
-            Per Team · One-time
-          </div>
-          <div class="pay-pill-right">
-            Secure checkout via
-            <div class="rzp-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#00b4d8"><path d="M14.236 0L9.6 14.4h3.6L8.364 24 18 9.6h-4.8L18 0z"/></svg>
-              <span style="color:#00b4d8;font-weight:700;font-size:.7rem;font-family:'Space Mono',monospace;">Razorpay</span>
-            </div>
-            UPI · Cards · NetBanking
-          </div>
+        <!-- Step indicator -->
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot1">1</div>
+          <div class="step-line" id="line1"></div>
+          <div class="step-dot" id="dot2">2</div>
+          <div class="step-line" id="line2"></div>
+          <div class="step-dot" id="dot3">✓</div>
         </div>
+
+        <div class="modal-title">Team Details</div>
+        <div class="modal-sub">Step 1 of 2 &nbsp;·&nbsp; vector.io Hackathon 2026</div>
 
         <div class="form-group">
           <label>Team Name *</label>
-          <input type="text" id="teamName" placeholder="Your awesome team name">
+          <input type="text" id="f_team" placeholder="Your awesome team name">
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Your Name *</label>
-            <input type="text" id="leaderName" placeholder="Team leader name">
+            <label>Leader Name *</label>
+            <input type="text" id="f_leader" placeholder="Your full name">
           </div>
           <div class="form-group">
             <label>Team Size *</label>
-            <select id="teamSize">
-              <option value="">Select size</option>
+            <select id="f_size">
+              <option value="">Select</option>
               <option>1 (Solo)</option>
               <option>2 Members</option>
               <option>3 Members</option>
@@ -462,125 +491,223 @@
         </div>
         <div class="form-group">
           <label>Email Address *</label>
-          <input type="email" id="regEmail" placeholder="your@email.com">
+          <input type="email" id="f_email" placeholder="your@email.com">
         </div>
         <div class="form-group">
           <label>Phone Number *</label>
-          <input type="tel" id="regPhone" placeholder="10-digit mobile number">
+          <input type="tel" id="f_phone" placeholder="10-digit mobile number">
         </div>
         <div class="form-group">
           <label>College / Institution *</label>
-          <input type="text" id="regCollege" placeholder="Your college name">
+          <input type="text" id="f_college" placeholder="Your college name">
         </div>
         <div class="form-group">
           <label>Project Idea (Brief)</label>
-          <textarea id="regIdea" placeholder="Describe your project idea in 2-3 sentences..."></textarea>
+          <textarea id="f_idea" placeholder="Describe your project idea in 2-3 sentences..."></textarea>
         </div>
 
-        <button class="pay-btn" id="payBtn" onclick="startPayment()">
-          🔒 &nbsp;Pay ₹249 &amp; Register
+        <button class="btn-next" id="btn1" onclick="goToStep2()">
+          Next — Pay ₹249 &nbsp;→
         </button>
-        <div class="modal-error" id="modalError"></div>
-
-        <p class="modal-note">
-          Payment secured by Razorpay · UPI / Cards / Wallets / NetBanking accepted<br>
-          Queries: <strong style="color:var(--neon-blue)">Sandesh 8668916936</strong> · <strong style="color:var(--neon-blue)">Tejas 80079 53204</strong>
-        </p>
-
-        <!-- Organizer config panel (hidden by default) -->
-        <button class="config-toggle" onclick="toggleConfig()">⚙ organizer settings</button>
-        <div class="config-panel" id="configPanel">
-          <div class="config-panel-title">⚙ Organizer Configuration · Fill once, saved in browser</div>
-          <div class="cfg-row">
-            <div class="form-group">
-              <label>Razorpay Key ID</label>
-              <input type="text" id="cfgRzpKey" placeholder="rzp_live_xxxxxxxxxxxx" oninput="saveConfig()">
-            </div>
-            <div class="form-group">
-              <label>EmailJS Public Key</label>
-              <input type="text" id="cfgEjPub" placeholder="your_public_key" oninput="saveConfig()">
-            </div>
-          </div>
-          <div class="cfg-row">
-            <div class="form-group">
-              <label>EmailJS Service ID</label>
-              <input type="text" id="cfgEjSvc" placeholder="service_xxxxxxx" oninput="saveConfig()">
-            </div>
-            <div class="form-group">
-              <label>EmailJS Template ID</label>
-              <input type="text" id="cfgEjTpl" placeholder="template_xxxxxxx" oninput="saveConfig()">
-            </div>
-          </div>
-          <div class="cfg-note">
-            <strong style="color:var(--gold)">Razorpay:</strong> dashboard.razorpay.com → Settings → API Keys → copy the <em>Key ID</em> (starts with <code>rzp_live_</code> or <code>rzp_test_</code>). You only need the Key ID here — no secret required for frontend checkout.<br><br>
-            <strong style="color:var(--gold)">EmailJS:</strong> emailjs.com (free) → Add Gmail service → Create email template. Template variables: <code>{{team_name}}</code> <code>{{leader_name}}</code> <code>{{team_size}}</code> <code>{{email}}</code> <code>{{phone}}</code> <code>{{college}}</code> <code>{{idea}}</code> <code>{{payment_id}}</code> <code>{{order_id}}</code>. Paste your Public Key, Service ID, and Template ID above.
-          </div>
-        </div>
+        <div class="modal-error" id="err1"></div>
+        <p class="modal-note">Queries: <strong style="color:var(--neon-blue)">Sandesh 8668916936</strong> · <strong style="color:var(--neon-blue)">Tejas 80079 53204</strong></p>
       </div>
     </div>
 
-    <!-- ── STEP 2: PROCESSING ── -->
-    <div class="modal-step" id="stepProcessing">
+    <!-- ── STEP 2 : QR Payment + Receipt ── -->
+    <div class="modal-step" id="step2">
       <div class="modal-inner">
-        <div class="step-center">
-          <div class="spinner"></div>
-          <h3 id="processingTitle">Opening Checkout…</h3>
-          <p id="processingMsg">Preparing your secure payment link.</p>
+        <div class="step-indicator">
+          <div class="step-dot done" id="dot1b">✓</div>
+          <div class="step-line done" id="line1b"></div>
+          <div class="step-dot active" id="dot2b">2</div>
+          <div class="step-line" id="line2b"></div>
+          <div class="step-dot" id="dot3b">✓</div>
         </div>
+
+        <button class="btn-back" onclick="goToStep1()">← Back</button>
+
+        <div class="modal-title">Pay ₹249</div>
+        <div class="modal-sub">Step 2 of 2 &nbsp;·&nbsp; Scan · Pay · Upload Receipt</div>
+
+        <!-- QR + Instructions -->
+        <div class="qr-section">
+          <div class="qr-box" id="qrBox">
+            <!--
+              ════════════════════════════════════════════════
+              ORGANIZER: Replace the src below with your actual
+              UPI QR code image file (e.g. upi-qr.png).
+              Place the image in the same folder as this HTML.
+              ════════════════════════════════════════════════
+            -->
+            <img src="upi-qr.png" alt="UPI QR Code" id="qrImg"
+                 onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'">
+            <div class="qr-placeholder" id="qrFallback" style="display:none">
+              <span>📲</span>
+              <p>Place your<br><strong style="color:var(--neon-blue)">UPI QR</strong><br>image here<br><br><span style="color:var(--gold);font-size:.55rem;">filename: upi-qr.png</span></p>
+            </div>
+            <div class="qr-corner tl"></div>
+            <div class="qr-corner tr"></div>
+            <div class="qr-corner bl"></div>
+            <div class="qr-corner br"></div>
+          </div>
+          <div class="qr-info">
+            <div class="qr-info-title">Registration Fee</div>
+            <div class="qr-amount">₹249</div>
+            <div class="qr-upi" id="qrUpiId">UPI: sandeshshingankar8@okicici</div>
+            <ul class="qr-steps">
+              <li>Open any UPI app (GPay, PhonePe, Paytm…)</li>
+              <li>Scan the QR or use the UPI ID above</li>
+              <li>Pay exactly <strong style="color:var(--gold)">₹249</strong></li>
+              <li>Screenshot your payment receipt</li>
+              <li>Upload it below &amp; submit</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Receipt upload -->
+        <div class="receipt-section">
+          <div class="receipt-section-title">Upload Payment Receipt</div>
+
+          <div class="file-drop" id="fileDrop">
+            <input type="file" id="receiptFile" accept="image/*,.pdf" onchange="handleFile(this)">
+            <div class="file-drop-icon">📎</div>
+            <div class="file-drop-text">
+              <strong>Click to upload</strong> or drag &amp; drop<br>
+              Screenshot / photo of payment receipt<br>
+              <span style="opacity:.5">JPG · PNG · PDF · max 5 MB</span>
+            </div>
+          </div>
+          <div class="file-preview" id="filePreview">
+            <img id="previewImg" src="" alt="Receipt preview">
+            <div class="file-name" id="fileName"></div>
+            <button class="file-remove" onclick="removeFile()">✕ Remove</button>
+          </div>
+
+          <!-- Transaction details -->
+          <div class="txn-row">
+            <div class="form-group">
+              <label>UTR / Transaction ID *</label>
+              <input type="text" id="f_utr" placeholder="12-digit UTR number">
+            </div>
+            <div class="form-group">
+              <label>Payment App Used</label>
+              <select id="f_app">
+                <option value="">Select app</option>
+                <option>Google Pay</option>
+                <option>PhonePe</option>
+                <option>Paytm</option>
+                <option>BHIM UPI</option>
+                <option>Amazon Pay</option>
+                <option>Net Banking</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Payment Date &amp; Time</label>
+            <input type="datetime-local" id="f_paidAt">
+          </div>
+        </div>
+
+        <button class="btn-submit" id="btn2" onclick="submitRegistration()">
+          ✅ &nbsp;Confirm &amp; Send Registration
+        </button>
+        <div class="modal-error" id="err2"></div>
+        <p class="modal-note">
+          After clicking, your email app will open with all details pre-filled.<br>
+          Just hit <strong style="color:var(--neon-blue)">Send</strong> — and you're done!
+        </p>
       </div>
     </div>
 
-    <!-- ── STEP 3: SUCCESS ── -->
-    <div class="modal-step" id="stepSuccess">
+    <!-- ── STEP 3 : Success + All Backup Methods ── -->
+    <div class="modal-step" id="step3">
       <div class="modal-inner">
         <div class="success-wrap">
-          <span class="check">✅</span>
-          <h3>You're In!</h3>
-          <p>Payment confirmed. You are officially registered for<br><strong>vector.io Hackathon 2026</strong>.</p>
-          <div class="pid-box" id="pidBox"></div>
-          <p style="margin-top:4px;">
-            Screenshot the above for your records.<br>
-            Contact <strong style="color:var(--neon-blue)">Sandesh: 8668916936</strong> for any queries.
-          </p>
+          <span class="check">🎉</span>
+          <h3>Details Saved!</h3>
+          <p class="success-sub">Saved to browser storage · Now send to the organizer</p>
+
+          <div class="success-detail" id="successDetail"></div>
+
+          <div class="safety-banner">
+            <div class="safety-icon">🛡️</div>
+            <div class="safety-text">
+              <strong>Nothing is lost.</strong> All details are saved in this browser. Even if you close this window or the email doesn’t send, you can resend any time using the buttons below.
+            </div>
+          </div>
+
+          <div class="backup-label">Send to organizer via:</div>
+          <div class="backup-cards">
+            <div class="backup-card primary">
+              <div class="backup-card-icon">📧</div>
+              <div class="backup-card-info">
+                <div class="backup-card-title">Email App</div>
+                <div class="backup-card-sub">Opens Gmail/Outlook with everything pre-filled</div>
+              </div>
+              <span class="backup-badge badge-blue">Recommended</span>
+              <button class="backup-btn blue" onclick="doEmail()" style="margin-left:8px;">Open →</button>
+            </div>
+            <div class="backup-card">
+              <div class="backup-card-icon">💬</div>
+              <div class="backup-card-info">
+                <div class="backup-card-title">WhatsApp</div>
+                <div class="backup-card-sub">Message organizer with all details</div>
+              </div>
+              <span class="backup-badge badge-green">Instant</span>
+              <button class="backup-btn wa" onclick="doWhatsApp()" style="margin-left:8px;">Open →</button>
+            </div>
+            <div class="backup-card">
+              <div class="backup-card-icon">📋</div>
+              <div class="backup-card-info">
+                <div class="backup-card-title">Copy All Details</div>
+                <div class="backup-card-sub">Paste into any chat, email, or notes</div>
+              </div>
+              <button class="backup-btn copy" id="copyBtn" onclick="doCopy()" style="margin-left:auto;">Copy</button>
+            </div>
+            <div class="backup-card">
+              <div class="backup-card-icon">💾</div>
+              <div class="backup-card-info">
+                <div class="backup-card-title">Download .txt Backup</div>
+                <div class="backup-card-sub">Save permanently to your device</div>
+              </div>
+              <span class="backup-badge badge-gold">Offline</span>
+              <button class="backup-btn dl" onclick="doDownload()" style="margin-left:8px;">Save</button>
+            </div>
+          </div>
+
+          <div class="ls-notice">
+            ✓ Auto-saved in browser storage &nbsp;·&nbsp;
+            <button onclick="showSaved()">view saved entries</button>
+            &nbsp;·&nbsp;
+            <button onclick="clearSaved()">clear storage</button>
+          </div>
+
+          <button onclick="closeModal()" style="margin-top:14px;width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--text-dim);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;cursor:pointer;">
+            Close Window
+          </button>
         </div>
       </div>
     </div>
 
-  </div><!-- /modal-box -->
-</div><!-- /modal-overlay -->
+  </div>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════════════════════════════════════════ -->
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
-//  CONFIG  —  loaded from localStorage (set once via ⚙ organizer settings)
+//  CONFIG — change UPI ID here
 // ─────────────────────────────────────────────────────────────────────────────
-let CFG = {
-  rzpKey : localStorage.getItem('vec_rzp_key')  || '',
-  ejPub  : localStorage.getItem('vec_ej_pub')   || '',
-  ejSvc  : localStorage.getItem('vec_ej_svc')   || '',
-  ejTpl  : localStorage.getItem('vec_ej_tpl')   || '',
-};
+const ORGANIZER_EMAIL = 'sandeshshingankar8@gmail.com';
+const UPI_ID          = 'sandeshshingankar8@okicici'; // ← change to your actual UPI ID
+document.getElementById('qrUpiId').textContent = 'UPI: ' + UPI_ID;
 
-function saveConfig() {
-  CFG.rzpKey = document.getElementById('cfgRzpKey').value.trim();
-  CFG.ejPub  = document.getElementById('cfgEjPub').value.trim();
-  CFG.ejSvc  = document.getElementById('cfgEjSvc').value.trim();
-  CFG.ejTpl  = document.getElementById('cfgEjTpl').value.trim();
-  localStorage.setItem('vec_rzp_key', CFG.rzpKey);
-  localStorage.setItem('vec_ej_pub',  CFG.ejPub);
-  localStorage.setItem('vec_ej_svc',  CFG.ejSvc);
-  localStorage.setItem('vec_ej_tpl',  CFG.ejTpl);
-  if (CFG.ejPub) emailjs.init({ publicKey: CFG.ejPub });
-}
-
-function toggleConfig() {
-  document.getElementById('configPanel').classList.toggle('open');
-}
-
-// Init EmailJS if already configured
-if (CFG.ejPub) emailjs.init({ publicKey: CFG.ejPub });
+// ─────────────────────────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────────────────────────
+let formData    = {};
+let receiptFile = null;
+let mailtoStr   = '';
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  PARTICLES
@@ -589,15 +716,9 @@ if (CFG.ejPub) emailjs.init({ publicKey: CFG.ejPub });
   const c = document.getElementById('particles');
   const colors = ['#00d4ff','#7b2fff','#ff2d78','#ffd700'];
   for (let i = 0; i < 35; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const left  = Math.random() * 100;
-    const dur   = 8 + Math.random() * 14;
-    const delay = Math.random() * 10;
-    const drift = (Math.random() - .5) * 200;
-    const size  = Math.random() > .7 ? 3 : 2;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    p.style.cssText = `left:${left}%;width:${size}px;height:${size}px;background:${color};animation-duration:${dur}s;animation-delay:-${delay}s;--drift:${drift}px`;
+    const p = document.createElement('div'); p.className = 'particle';
+    const left=Math.random()*100,dur=8+Math.random()*14,delay=Math.random()*10,drift=(Math.random()-.5)*200,size=Math.random()>.7?3:2;
+    p.style.cssText=`left:${left}%;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${dur}s;animation-delay:-${delay}s;--drift:${drift}px`;
     c.appendChild(p);
   }
 })();
@@ -609,203 +730,251 @@ const navToggle = document.getElementById('navToggle');
 const navLinks  = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
 navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
-window.addEventListener('resize', () => { if (window.innerWidth > 768) navLinks.classList.remove('active'); });
+window.addEventListener('resize', () => { if(window.innerWidth>768) navLinks.classList.remove('active'); });
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  SCROLL REVEAL
 // ─────────────────────────────────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); } });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  MODAL HELPERS
+//  MODAL
 // ─────────────────────────────────────────────────────────────────────────────
-function openModal() {
+function openModal(){
   navLinks.classList.remove('active');
-  showStep('stepForm');
-  resetForm();
-  // Restore saved config into fields
-  document.getElementById('cfgRzpKey').value = CFG.rzpKey;
-  document.getElementById('cfgEjPub').value  = CFG.ejPub;
-  document.getElementById('cfgEjSvc').value  = CFG.ejSvc;
-  document.getElementById('cfgEjTpl').value  = CFG.ejTpl;
+  showStep('step1');
   document.getElementById('regModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
-
-function closeModal() {
+function closeModal(){
   document.getElementById('regModal').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
+}
+document.getElementById('regModal').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+
+function showStep(id){
+  document.querySelectorAll('.modal-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // scroll modal to top
+  const box = document.querySelector('.modal-box');
+  if(box) box.scrollTop = 0;
 }
 
-document.getElementById('regModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
+function showErr(id, msg){
+  const el = document.getElementById(id);
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+function clearErr(id){ document.getElementById(id).style.display='none'; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  FILE HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
+function handleFile(input){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 5 * 1024 * 1024){ showErr('err2','File too large. Max 5 MB.'); input.value=''; return; }
+  receiptFile = file;
+  document.getElementById('fileName').textContent = '📎 ' + file.name;
+  document.getElementById('filePreview').style.display = 'block';
+  document.getElementById('fileDrop').style.display = 'none';
+  if(file.type.startsWith('image/')){
+    const reader = new FileReader();
+    reader.onload = e => { document.getElementById('previewImg').src = e.target.result; document.getElementById('previewImg').style.display='block'; };
+    reader.readAsDataURL(file);
+  } else {
+    document.getElementById('previewImg').style.display = 'none';
+  }
+}
+
+function removeFile(){
+  receiptFile = null;
+  document.getElementById('receiptFile').value='';
+  document.getElementById('filePreview').style.display='none';
+  document.getElementById('fileDrop').style.display='block';
+  document.getElementById('previewImg').src='';
+}
+
+// Drag & drop
+const drop = document.getElementById('fileDrop');
+drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('dragover'); });
+drop.addEventListener('dragleave', ()=> drop.classList.remove('dragover'));
+drop.addEventListener('drop', e=>{
+  e.preventDefault(); drop.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if(file){ const dt = new DataTransfer(); dt.items.add(file); document.getElementById('receiptFile').files=dt.files; handleFile(document.getElementById('receiptFile')); }
 });
 
-function showStep(id) {
-  document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function showError(msg) {
-  const box = document.getElementById('modalError');
-  box.textContent = '⚠ ' + msg;
-  box.style.display = 'block';
-}
-function clearError() {
-  document.getElementById('modalError').style.display = 'none';
-}
-
-function resetForm() {
-  ['teamName','leaderName','regEmail','regPhone','regCollege','regIdea'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('teamSize').value = '';
-  clearError();
-  document.getElementById('payBtn').disabled = false;
-}
-
-function setProcessing(title, msg) {
-  document.getElementById('processingTitle').textContent = title;
-  document.getElementById('processingMsg').textContent   = msg;
-  showStep('stepProcessing');
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
-//  VALIDATION
+//  STEP 1 → STEP 2
 // ─────────────────────────────────────────────────────────────────────────────
-function validate() {
-  const teamName   = document.getElementById('teamName').value.trim();
-  const leaderName = document.getElementById('leaderName').value.trim();
-  const email      = document.getElementById('regEmail').value.trim();
-  const phone      = document.getElementById('regPhone').value.trim();
-  const college    = document.getElementById('regCollege').value.trim();
-  const teamSize   = document.getElementById('teamSize').value;
+function goToStep2(){
+  clearErr('err1');
+  const team   = document.getElementById('f_team').value.trim();
+  const leader = document.getElementById('f_leader').value.trim();
+  const size   = document.getElementById('f_size').value;
+  const email  = document.getElementById('f_email').value.trim();
+  const phone  = document.getElementById('f_phone').value.trim();
+  const college= document.getElementById('f_college').value.trim();
+  const idea   = document.getElementById('f_idea').value.trim();
 
-  if (!teamName || !leaderName || !email || !phone || !college || !teamSize) {
-    showError('Please fill in all required fields.'); return null;
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showError('Please enter a valid email address.'); return null;
-  }
-  if (!/^\d{10}$/.test(phone.replace(/\s/g, ''))) {
-    showError('Please enter a valid 10-digit phone number.'); return null;
-  }
-  if (!CFG.rzpKey) {
-    showError('Razorpay Key ID is not configured. Click ⚙ organizer settings below.'); return null;
-  }
-  return {
-    teamName, leaderName, teamSize, email,
-    phone: phone.replace(/\s/g, ''),
-    college,
-    idea: document.getElementById('regIdea').value.trim() || 'Not provided',
-  };
+  if(!team||!leader||!size||!email||!phone||!college){ return showErr('err1','Please fill in all required fields.'); }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))    { return showErr('err1','Please enter a valid email address.'); }
+  if(!/^\d{10}$/.test(phone.replace(/\s/g,'')))     { return showErr('err1','Please enter a valid 10-digit phone number.'); }
+
+  formData = { team, leader, size, email, phone, college, idea: idea||'Not provided' };
+
+  // Pre-fill payment datetime to now
+  const now = new Date();
+  const local = new Date(now - now.getTimezoneOffset()*60000).toISOString().slice(0,16);
+  document.getElementById('f_paidAt').value = local;
+
+  showStep('step2');
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  EMAILJS — send registration details to organizer after payment
-// ─────────────────────────────────────────────────────────────────────────────
-async function sendEmail(formData, paymentId, orderId) {
-  if (!CFG.ejPub || !CFG.ejSvc || !CFG.ejTpl) {
-    console.warn('EmailJS not configured — skipping email notification.');
-    return;
-  }
-  try {
-    await emailjs.send(CFG.ejSvc, CFG.ejTpl, {
-      team_name   : formData.teamName,
-      leader_name : formData.leaderName,
-      team_size   : formData.teamSize,
-      email       : formData.email,
-      phone       : formData.phone,
-      college     : formData.college,
-      idea        : formData.idea,
-      payment_id  : paymentId,
-      order_id    : orderId,
-      timestamp   : new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-    });
-    console.log('✅ Registration email sent.');
-  } catch (err) {
-    // Non-fatal — payment already succeeded
-    console.warn('EmailJS failed (non-fatal):', err);
-  }
+function goToStep1(){ showStep('step1'); }
+
+// ═══════════════════════════════════════════════════════════════
+//  SUBMIT → SAVE LOCALLY → SHOW STEP 3
+// ═══════════════════════════════════════════════════════════════
+const LS_KEY = 'vectorio_registrations';
+const ORGANIZER_WHATSAPP = '918668916936'; // country code + number
+let savedEntry = {};
+
+function buildText(e){
+  return `===========================================
+  VECTOR.IO HACKATHON 2026 — REGISTRATION
+  NMIET Talegaon Dabhade
+===========================================
+
+TEAM DETAILS
+─────────────────────────
+Team Name    : ${e.team}
+Team Size    : ${e.size}
+Leader Name  : ${e.leader}
+Email        : ${e.email}
+Phone        : ${e.phone}
+College      : ${e.college}
+
+Project Idea :
+${e.idea}
+
+─────────────────────────
+PAYMENT DETAILS
+─────────────────────────
+Amount Paid  : ₹249
+UPI ID       : ${UPI_ID}
+UTR / Txn ID : ${e.utr}
+Payment App  : ${e.app}
+Payment Time : ${e.paidAtDisplay}
+Receipt File : ${e.receiptName}
+
+─────────────────────────
+Submitted    : ${e.submittedAt}
+===========================================`;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  MAIN PAYMENT FLOW
-// ─────────────────────────────────────────────────────────────────────────────
-function startPayment() {
-  clearError();
-  const formData = validate();
-  if (!formData) return;
+function submitRegistration(){
+  clearErr('err2');
+  const utr    = document.getElementById('f_utr').value.trim();
+  const app    = document.getElementById('f_app').value || 'Not specified';
+  const paidAt = document.getElementById('f_paidAt').value;
 
-  document.getElementById('payBtn').disabled = true;
-  setProcessing('Opening Checkout…', 'Preparing your secure payment link.');
+  if(!utr){ return showErr('err2','Please enter your UTR / Transaction ID from the payment receipt.'); }
+  if(utr.length < 6){ return showErr('err2','UTR / Transaction ID seems too short. Please double-check.'); }
+  if(!receiptFile){ return showErr('err2','Please upload your payment receipt screenshot.'); }
 
-  const options = {
-    key         : CFG.rzpKey,
-    amount      : 24900,           // ₹249 in paise
-    currency    : 'INR',
-    name        : 'vector.io Hackathon 2026',
-    description : `Team Registration – ${formData.teamName}`,
-    image       : '',              // optional: URL to your logo
-    prefill: {
-      name   : formData.leaderName,
-      email  : formData.email,
-      contact: formData.phone,
-    },
-    notes: {
-      team_name : formData.teamName,
-      college   : formData.college,
-      team_size : formData.teamSize,
-    },
-    theme: { color: '#00d4ff' },
+  const paidAtDisplay = paidAt
+    ? new Date(paidAt).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})
+    : 'Not specified';
 
-    // ── Payment success ──────────────────────────────────────────────────────
-    handler: async function(response) {
-      setProcessing('Confirming…', 'Locking in your registration — almost done!');
-
-      // Send email notification (fire-and-forget)
-      await sendEmail(formData, response.razorpay_payment_id, response.razorpay_order_id || '—');
-
-      // Show success
-      document.getElementById('pidBox').innerHTML =
-        `<strong>Payment ID</strong> &nbsp; ${response.razorpay_payment_id}<br>` +
-        `<strong>Order ID &nbsp;&nbsp;</strong> &nbsp; ${response.razorpay_order_id || '—'}<br>` +
-        `<strong>Team &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> &nbsp; ${formData.teamName}<br>` +
-        `<strong>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> &nbsp; ${formData.email}`;
-      showStep('stepSuccess');
-    },
-
-    // ── Modal dismissed without payment ─────────────────────────────────────
-    modal: {
-      ondismiss: function() {
-        showStep('stepForm');
-        document.getElementById('payBtn').disabled = false;
-        showError('Payment was cancelled. You can try again.');
-      }
-    }
+  savedEntry = {
+    ...formData, utr, app, paidAtDisplay,
+    receiptName: receiptFile ? receiptFile.name : 'N/A',
+    submittedAt: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'}),
   };
 
+  // Save to localStorage immediately (nothing lost even if mail fails)
   try {
-    const rzp = new Razorpay(options);
-    rzp.on('payment.failed', function(resp) {
-      showStep('stepForm');
-      document.getElementById('payBtn').disabled = false;
-      showError(`Payment failed: ${resp.error.description || 'Unknown error'}. Please try again.`);
-    });
-    rzp.open();
-  } catch (err) {
-    showStep('stepForm');
-    document.getElementById('payBtn').disabled = false;
-    showError('Could not open payment window. Check your Razorpay Key ID in ⚙ organizer settings.');
-  }
+    const existing = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    existing.push(savedEntry);
+    localStorage.setItem(LS_KEY, JSON.stringify(existing));
+  } catch(e){ console.warn('localStorage unavailable', e); }
+
+  // Populate success summary
+  document.getElementById('successDetail').innerHTML =
+    `<strong>Team</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${savedEntry.team}<br>`+
+    `<strong>Leader</strong> &nbsp;&nbsp;&nbsp; ${savedEntry.leader}<br>`+
+    `<strong>Email</strong> &nbsp;&nbsp;&nbsp;&nbsp; ${savedEntry.email}<br>`+
+    `<strong>Phone</strong> &nbsp;&nbsp;&nbsp;&nbsp; ${savedEntry.phone}<br>`+
+    `<strong>College</strong> &nbsp;&nbsp;&nbsp;${savedEntry.college}<br>`+
+    `<strong>UTR/Txn</strong> &nbsp;&nbsp;${savedEntry.utr}<br>`+
+    `<strong>Paid via</strong> &nbsp;&nbsp;${savedEntry.app}<br>`+
+    `<strong>Amount</strong> &nbsp;&nbsp;&nbsp; ₹249`;
+
+  showStep('step3');
+  // Auto-attempt email silently
+  setTimeout(doEmail, 400);
+}
+
+// ── 4 delivery methods ──────────────────────────────────────────
+function doEmail(){
+  const subject = `[vector.io Hackathon 2026] Registration – ${savedEntry.team}`;
+  const body = buildText(savedEntry) + `\n\n⚠ Please also attach the receipt screenshot: ${savedEntry.receiptName}`;
+  window.location.href = `mailto:${ORGANIZER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function doWhatsApp(){
+  const msg =
+    `*vector.io Hackathon 2026 – Registration*\n\n`+
+    `*Team:* ${savedEntry.team}\n`+
+    `*Leader:* ${savedEntry.leader}\n`+
+    `*Size:* ${savedEntry.size}\n`+
+    `*Email:* ${savedEntry.email}\n`+
+    `*Phone:* ${savedEntry.phone}\n`+
+    `*College:* ${savedEntry.college}\n\n`+
+    `*Idea:* ${savedEntry.idea}\n\n`+
+    `*Payment*\n`+
+    `Amount: ₹249\n`+
+    `UTR / Txn ID: ${savedEntry.utr}\n`+
+    `App: ${savedEntry.app}\n`+
+    `Time: ${savedEntry.paidAtDisplay}\n`+
+    `Receipt: ${savedEntry.receiptName}\n\n`+
+    `_(Please also send receipt screenshot separately)_`;
+  window.open(`https://wa.me/${ORGANIZER_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function doCopy(){
+  const text = buildText(savedEntry);
+  const btn = document.getElementById('copyBtn');
+  const finish = () => { btn.textContent='✓ Copied!'; btn.className='backup-btn copied'; setTimeout(()=>{btn.textContent='Copy';btn.className='backup-btn copy';},2500); };
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(finish).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);finish();
+  }) : (()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);finish();})();
+}
+
+function doDownload(){
+  const blob = new Blob([buildText(savedEntry)],{type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `vectorio-reg-${savedEntry.team.replace(/\s+/g,'-')}.txt`;
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+// ── LocalStorage viewer ─────────────────────────────────────────
+function showSaved(){
+  try{
+    const entries = JSON.parse(localStorage.getItem(LS_KEY)||'[]');
+    if(!entries.length){alert('No saved registrations in this browser.');return;}
+    alert(`Saved Registrations (${entries.length}):\n\n`+entries.map((e,i)=>`[${i+1}] ${e.team} · ${e.leader} · ${e.email} · UTR: ${e.utr} · ${e.submittedAt}`).join('\n'));
+  }catch(e){alert('Could not read local storage.');}
+}
+function clearSaved(){
+  if(!confirm('Clear all locally saved registration data? Cannot be undone.'))return;
+  try{localStorage.removeItem(LS_KEY);alert('Cleared.');}catch(e){}
 }
 </script>
 </body>
