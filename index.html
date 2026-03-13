@@ -284,6 +284,36 @@
   .ls-notice{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text-dim);text-align:center;line-height:1.7;padding:10px;border-top:1px solid rgba(255,255,255,.06);margin-top:4px;}
   .ls-notice button{background:none;border:none;color:var(--neon-blue);cursor:pointer;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.05em;text-decoration:underline;}
 
+  /* ── URGENT ACTION ALERT ── */
+  .action-alert{position:relative;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,153,0,.08));border:2px solid var(--gold);padding:18px 20px;margin-bottom:20px;text-align:center;overflow:hidden;}
+  .action-alert::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,215,0,.06),transparent);animation:alertShimmer 2s ease-in-out infinite;}
+  @keyframes alertShimmer{0%,100%{transform:translateX(-100%);}50%{transform:translateX(100%);}}
+  .action-alert-icon{font-size:2rem;display:block;margin-bottom:6px;animation:alertBounce 1s ease-in-out infinite;}
+  @keyframes alertBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+  .action-alert-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;color:var(--gold);line-height:1;margin-bottom:8px;}
+  .action-alert-body{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.07em;line-height:1.9;color:var(--text);}
+  .action-alert-body .highlight{background:rgba(255,215,0,.2);border:1px solid rgba(255,215,0,.4);color:var(--gold);padding:2px 8px;font-weight:700;display:inline-block;margin:0 2px;}
+  .action-alert-body .highlight-green{background:rgba(0,255,157,.15);border:1px solid rgba(0,255,157,.35);color:var(--green);padding:2px 8px;font-weight:700;display:inline-block;margin:0 2px;}
+  .action-alert-steps{display:flex;flex-direction:column;gap:6px;margin-top:12px;text-align:left;}
+  .action-step{display:flex;align-items:flex-start;gap:10px;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:.05em;}
+  .action-step-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;margin-top:1px;}
+  .action-step strong{color:#fff;}
+
+
+  /* ── URGENT ACTION ALERT ── */
+  .action-alert{position:relative;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,153,0,.08));border:2px solid var(--gold);padding:18px 20px;margin-bottom:20px;text-align:center;overflow:hidden;}
+  .action-alert::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,215,0,.07),transparent);animation:alertShimmer 2.5s ease-in-out infinite;}
+  @keyframes alertShimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+  .action-alert-icon{font-size:2rem;display:block;margin-bottom:6px;animation:alertBounce 1.2s ease-in-out infinite;}
+  @keyframes alertBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  .action-alert-title{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.1em;color:var(--gold);line-height:1;margin-bottom:10px;}
+  .action-alert-body{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.06em;line-height:2;color:var(--text);}
+  .hl-gold{background:rgba(255,215,0,.2);border:1px solid rgba(255,215,0,.5);color:var(--gold);padding:2px 8px;font-weight:700;display:inline-block;margin:1px 2px;letter-spacing:.08em;}
+  .hl-green{background:rgba(0,255,157,.15);border:1px solid rgba(0,255,157,.4);color:var(--green);padding:2px 8px;font-weight:700;display:inline-block;margin:1px 2px;letter-spacing:.08em;}
+  .action-steps{display:flex;flex-direction:column;gap:7px;margin-top:14px;text-align:left;}
+  .action-step{display:flex;align-items:flex-start;gap:10px;font-family:'Space Mono',monospace;font-size:.64rem;color:var(--text-dim);letter-spacing:.05em;line-height:1.5;}
+  .action-step-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.65rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .action-step strong{color:#fff;}
 </style>
 </head>
 <body>
@@ -625,41 +655,58 @@
     <div class="modal-step" id="step3">
       <div class="modal-inner">
         <div class="success-wrap">
-          <span class="check">🎉</span>
+          <span class="check">&#127881;</span>
           <h3>Details Saved!</h3>
-          <p class="success-sub">Saved to browser storage · Now send to the organizer</p>
+          <p class="success-sub">Saved to browser storage &middot; Complete your registration below</p>
+
+          <!-- &#9888; URGENT ACTION ALERT -->
+          <div class="action-alert">
+            <span class="action-alert-icon">&#128232;</span>
+            <div class="action-alert-title">&#9888;&#65039; Action Required to Confirm</div>
+            <div class="action-alert-body">
+              Your details are saved &mdash; but you are
+              <span class="hl-gold">NOT REGISTERED YET</span><br>
+              Click <span class="hl-gold">Open Email App</span> below, then press
+              <span class="hl-green">&#9654; SEND</span> in your mail app.
+            </div>
+            <div class="action-steps">
+              <div class="action-step"><div class="action-step-num">1</div><span>Click <strong>&ldquo;Open Email App &rarr;&rdquo;</strong> in the blue button below</span></div>
+              <div class="action-step"><div class="action-step-num">2</div><span>Your email app opens &mdash; <strong>all details are already filled</strong></span></div>
+              <div class="action-step"><div class="action-step-num">3</div><span>Press the <strong>SEND</strong> button in your email app &mdash; done!</span></div>
+            </div>
+          </div>
 
           <div class="success-detail" id="successDetail"></div>
 
           <div class="safety-banner">
-            <div class="safety-icon">🛡️</div>
+            <div class="safety-icon">&#128737;&#65039;</div>
             <div class="safety-text">
-              <strong>Nothing is lost.</strong> All details are saved in this browser. Even if you close this window or the email doesn’t send, you can resend any time using the buttons below.
+              <strong>Nothing is lost.</strong> All details are saved in this browser. If email does not open, use WhatsApp or Copy below as alternatives.
             </div>
           </div>
 
           <div class="backup-label">Send to organizer via:</div>
           <div class="backup-cards">
             <div class="backup-card primary">
-              <div class="backup-card-icon">📧</div>
+              <div class="backup-card-icon">&#128231;</div>
               <div class="backup-card-info">
                 <div class="backup-card-title">Email App</div>
-                <div class="backup-card-sub">Opens Gmail/Outlook with everything pre-filled</div>
+                <div class="backup-card-sub">Opens Gmail / Outlook &mdash; then press <strong style="color:var(--green)">SEND</strong></div>
               </div>
               <span class="backup-badge badge-blue">Recommended</span>
-              <button class="backup-btn blue" onclick="doEmail()" style="margin-left:8px;">Open →</button>
+              <button class="backup-btn blue" onclick="doEmail()" style="margin-left:8px;">Open &rarr;</button>
             </div>
             <div class="backup-card">
-              <div class="backup-card-icon">💬</div>
+              <div class="backup-card-icon">&#128172;</div>
               <div class="backup-card-info">
                 <div class="backup-card-title">WhatsApp</div>
                 <div class="backup-card-sub">Message organizer with all details</div>
               </div>
               <span class="backup-badge badge-green">Instant</span>
-              <button class="backup-btn wa" onclick="doWhatsApp()" style="margin-left:8px;">Open →</button>
+              <button class="backup-btn wa" onclick="doWhatsApp()" style="margin-left:8px;">Open &rarr;</button>
             </div>
             <div class="backup-card">
-              <div class="backup-card-icon">📋</div>
+              <div class="backup-card-icon">&#128203;</div>
               <div class="backup-card-info">
                 <div class="backup-card-title">Copy All Details</div>
                 <div class="backup-card-sub">Paste into any chat, email, or notes</div>
@@ -667,7 +714,7 @@
               <button class="backup-btn copy" id="copyBtn" onclick="doCopy()" style="margin-left:auto;">Copy</button>
             </div>
             <div class="backup-card">
-              <div class="backup-card-icon">💾</div>
+              <div class="backup-card-icon">&#128190;</div>
               <div class="backup-card-info">
                 <div class="backup-card-title">Download .txt Backup</div>
                 <div class="backup-card-sub">Save permanently to your device</div>
@@ -678,9 +725,9 @@
           </div>
 
           <div class="ls-notice">
-            ✓ Auto-saved in browser storage &nbsp;·&nbsp;
+            &#10003; Auto-saved in browser storage &nbsp;&middot;&nbsp;
             <button onclick="showSaved()">view saved entries</button>
-            &nbsp;·&nbsp;
+            &nbsp;&middot;&nbsp;
             <button onclick="clearSaved()">clear storage</button>
           </div>
 
